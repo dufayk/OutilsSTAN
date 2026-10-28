@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outils Stanislas</title>
+<meta name="description" content="Page d'accueil des outils de suivi et d'organisation du Lycée Stanislas.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231e3a8a'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>S</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --text: #1b2236;
+    --muted: #5d6680;
+    --border: #e3e7f0;
+    --accent: #1e3a8a;
+    --shadow: 0 2px 6px rgba(20, 30, 60, .06), 0 8px 24px rgba(20, 30, 60, .06);
+    --shadow-hover: 0 6px 14px rgba(20, 30, 60, .10), 0 18px 40px rgba(20, 30, 60, .12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1422;
+      --surface: #181f33;
+      --text: #eef1f8;
+      --muted: #9aa3bd;
+      --border: #273050;
+      --accent: #8fb0ff;
+      --shadow: 0 2px 6px rgba(0, 0, 0, .3);
+      --shadow-hover: 0 10px 30px rgba(0, 0, 0, .45);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1422;
+    --surface: #181f33;
+    --text: #eef1f8;
+    --muted: #9aa3bd;
+    --border: #273050;
+    --accent: #8fb0ff;
+    --shadow: 0 2px 6px rgba(0, 0, 0, .3);
+    --shadow-hover: 0 10px 30px rgba(0, 0, 0, .45);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.4;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px 56px; }
+
+  header { padding: 48px 0 24px; text-align: center; }
+  .logo {
+    display: inline-grid; place-items: center;
+    width: 64px; height: 64px; border-radius: 18px;
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: #fff; font-weight: 800; font-size: 32px;
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+  }
+  h1 { margin: 0; font-size: clamp(28px, 5vw, 40px); font-weight: 800; letter-spacing: .02em; }
+  h1 span { color: var(--accent); }
+  .subtitle { margin: 6px 0 0; color: var(--muted); font-size: 16px; }
+
+  section { margin-top: 36px; }
+  h2 {
+    display: flex; align-items: center; gap: 10px;
+    margin: 0 0 16px; font-size: 14px; font-weight: 800;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  }
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    color: inherit; text-decoration: none;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .card:hover, .card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: transparent;
+    outline: none;
+  }
+  .card:focus-visible { box-shadow: 0 0 0 3px var(--accent), var(--shadow-hover); }
+  .icon {
+    display: grid; place-items: center;
+    width: 56px; height: 56px; border-radius: 16px;
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    box-shadow: 0 6px 16px -4px var(--c2);
+    transition: transform .25s ease;
+  }
+  .card:hover .icon { transform: rotate(-6deg) scale(1.06); }
+  .icon svg {
+    width: 28px; height: 28px;
+    fill: none; stroke: #fff; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .card h3 { margin: 0; font-size: 18px; font-weight: 800; }
+  .card p { margin: -8px 0 0; color: var(--muted); font-size: 14px; }
+
+  .orange { --c1: #fbbf24; --c2: #f97316; }
+  .teal   { --c1: #2dd4bf; --c2: #0891b2; }
+  .blue   { --c1: #60a5fa; --c2: #2563eb; }
+  .pink   { --c1: #f472b6; --c2: #db2777; }
+  .violet { --c1: #a78bfa; --c2: #7c3aed; }
+  .green  { --c1: #4ade80; --c2: #16a34a; }
+  .indigo { --c1: #818cf8; --c2: #4338ca; }
+  .red    { --c1: #fb7185; --c2: #e11d48; }
+
+  footer { margin-top: 56px; text-align: center; color: var(--muted); font-size: 13px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card, .icon { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo" aria-hidden="true">S</div>
+    <h1>Outils <span>STANISLAS</span></h1>
+    <p class="subtitle">Suivi, organisation et ressources du lycée</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Suivi</h2>
+      <div class="grid">
+        <a class="card" target="_blank" rel="noopener" href="https://onedrive.live.com/:x:/g/personal/5D52A1797141B0AE/IQBcCjcadJQISK8OXZnMYDDsASjZ-mB01I8E2jAYgkJJ_Hw?resid=5D52A1797141B0AE!s1a370a5c94744808af0e5d99cc6030ec&amp;ithint=file%2Cxlsx&amp;e=E6ueBI&amp;wdOrigin=OWA.LINK&amp;wdPreviousSession=642ac7fd-a6e6-4c87-ab7c-1629e4191702&amp;migratedtospo=true&amp;redeem=aHR0cHM6Ly8xZHJ2Lm1zL3gvYy81ZDUyYTE3OTcxNDFiMGFlL0lRQmNDamNhZEpRSVNLOE9YWm5NWUREc0FTalotbUIwMUk4RTJqQVlna0pKX0h3P2U9RTZ1ZUJJJndkT3JpZ2luPU9XQS5MSU5LJndkUHJldmlvdXNTZXNzaW9uPTY0MmFjN2ZkLWE2ZTYtNGM4Ny1hYjdjLTE2MjllNDE5MTcwMg">
+          <span class="icon orange"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></svg></span>
+          <h3>Suivi des contrats</h3>
+          <p>Contrats élèves en cours</p>
+        </a>
+        <a class="card" target="_blank" rel="noopener" href="https://1drv.ms/x/c/5d52a1797141b0ae/IQA0DW76LY9ZQLyrrZmmO1a4ARwIBSdNMn-DTFKN6wiMSZw?e=gdWEwc">
+          <span class="icon teal"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+          <h3>Suivi des mesures</h3>
+          <p>Mesures en cours</p>
+        </a>
+        <a class="card" target="_blank" rel="noopener" href="https://stanislas365.sharepoint.com/:x:/r/sites/secondaire/_layouts/15/doc2.aspx?sourcedoc=%7B5EE9E9B5-4FDF-4EDE-9BD2-E6EF8AC96A0F%7D&amp;file=PLANS%20ACCOMPAGNEMENT%20LYCEE.xlsx&amp;action=default&amp;mobileredirect=true">
+          <span class="icon green"><svg viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg></span>
+          <h3>Plans d'accompagnement</h3>
+          <p>PAP, PAI, PPS… lycée</p>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Organisation</h2>
+      <div class="grid">
+        <a class="card" target="_blank" rel="noopener" href="https://stanislas365.sharepoint.com/:x:/r/sites/secondaire/_layouts/15/Doc.aspx?sourcedoc=%7BDB81F550-82BC-4CF4-BAAC-3CAD0A75F8E8%7D&amp;file=CALENDRIER%202026_2027.xlsx&amp;action=default&amp;mobileredirect=true">
+          <span class="icon blue"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></span>
+          <h3>Calendrier prévisionnel</h3>
+          <p>Année 2026-2027</p>
+        </a>
+        <a class="card" target="_blank" rel="noopener" href="https://originalkd.eu.pythonanywhere.com/">
+          <span class="icon pink"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <h3>Accompagnement personnalisé</h3>
+          <p>Application AP</p>
+        </a>
+        <a class="card" target="_blank" rel="noopener" href="https://stanislas365.sharepoint.com/:x:/s/secondaire/IQAJA-NqdbWSTryn2IlUFuRtAUQe2zjiaYSjb3L7DV2JC40?e=VquhMT&amp;CID=752f0118-4c81-ef75-34b3-b1a1e972a8c9">
+          <span class="icon violet"><svg viewBox="0 0 24 24"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/><path d="M8 12V9M12 12V7M16 12v-2"/></svg></span>
+          <h3>Conseils de classe</h3>
+          <p>Planning et organisation</p>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Divers</h2>
+      <div class="grid">
+        <a class="card" target="_blank" rel="noopener" href="https://stanislas365-my.sharepoint.com/:x:/g/personal/kdufay_stanislas-cannes_com/IQDtt6nwe1oyRIyG9lXbU3pTAbTNvAI-2ROhH-_NQUTU19Y?e=mD8STi&amp;CID=cd88a8d8-600d-6898-ab12-2473165c3045">
+          <span class="icon indigo"><svg viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+          <h3>Livres numériques lycée</h3>
+          <p>Manuels et ressources</p>
+        </a>
+        <a class="card" target="_blank" rel="noopener" href="https://stanislas365-my.sharepoint.com/:x:/r/personal/gpalluet_stanislas-cannes_com/_layouts/15/Doc.aspx?sourcedoc=%7BC01BE9FA-4D49-4695-86BD-4C46A264E054%7D&amp;file=Demande%20d%27Assistance%20Technique%20et%20Services%202026-2027.xlsx&amp;fromShare=true&amp;action=default&amp;mobileredirect=true">
+          <span class="icon red"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"/></svg></span>
+          <h3>Demande d'assistance</h3>
+          <p>Technique et services</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>Lycée Stanislas · Cannes</footer>
+</div>
+</body>
+</html>
